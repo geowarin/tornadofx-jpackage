@@ -2,10 +2,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     repositories {
-        mavenLocal()
+        maven("https://jitpack.io")
     }
     dependencies {
-        classpath("org.openjfx:javafx-plugin:0.0.9-SNAPSHOT")
+        classpath("com.github.siordache-forks:javafx-gradle-plugin:0.0.9-rc1")
     }
 }
 
@@ -17,7 +17,6 @@ plugins {
 }
 
 apply<org.openjfx.gradle.JavaFXPlugin>()
-//apply(plugin = "org.openjfx.javafxplugin")
 
 val compileKotlin: KotlinCompile by tasks
 val compileJava: JavaCompile by tasks
@@ -29,18 +28,15 @@ repositories {
 }
 
 dependencies {
-    // Align versions of all Kotlin components
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-//  implementation("no.tornado:tornadofx:1.7.20")
-    implementation("com.github.edvin:tornadofx2:master")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-
     testImplementation("org.jetbrains.kotlin:kotlin-test")
+
+    implementation("com.github.edvin:tornadofx2:master")
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.5.2")
-    testImplementation("org.skyscreamer:jsonassert:1.5.0")
     testImplementation("org.testfx:testfx-core:4.0.16-alpha")
-    testImplementation("com.google.jimfs:jimfs:1.1")
 }
 
 application {
@@ -66,7 +62,7 @@ configure<org.openjfx.gradle.JavaFXOptions> {
 }
 
 //javafx {
-//  version = "13"
+//  version = "14"
 //  modules("javafx.base", "javafx.graphics", "javafx.controls", "javafx.web", "javafx.swing", "javafx.fxml")
 //}
 
