@@ -1,6 +1,8 @@
-name: Java CI
+name: Linux build
 
-on: [push]
+on:
+  push:
+    branches: [ master ]
 
 jobs:
   build:
@@ -12,5 +14,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 14
+      - name: Fix permissions
+        run: chmod +x gradlew
       - name: Build package
         run: ./gradlew jpackage
